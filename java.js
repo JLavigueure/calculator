@@ -1,3 +1,8 @@
+function addScreen(int) {
+  // adds int text to calculator string
+  document.getElementById("screenText").innerHTML += int
+}
+
 // math functions
 
 function operator(sign, x, y) {
@@ -31,3 +36,10 @@ function add(x, y) {
   function divide(x, y) {
     return(x / y);
   }
+
+// screen buttons
+
+// specialty buttons
+document.getElementById("clear").addEventListener("click", function() {
+    document.getElementById("screenText").innerHTML = "";
+})
