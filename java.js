@@ -85,7 +85,7 @@ function operator(sign, x, y) {
   else if (sign == 'X') {
     return(multiply(x, y));
   }
-  else {return;}
+  else {return}
 }
 function add(x, y) {
     return(x + y);
@@ -97,7 +97,8 @@ function multiply(x, y) {
   return(x * y);
 } 
 function divide(x, y) {
-    return(x / y);
+  if (y == 0) {return("Error");}
+  else {return(x / y);}
 }
 
 // equals button
@@ -106,6 +107,10 @@ function divide(x, y) {
     let screen = document.getElementById("screenText").innerHTML;
     let input = screen.split(" ");
     let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
+    console.log(answer)
+    if (answer == undefined) {
+      return;
+    }
     document.getElementById("screenText").innerHTML = answer;
   })
 })();
