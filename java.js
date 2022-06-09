@@ -105,7 +105,7 @@ function divide(x, y) {
   document.getElementById("equal").addEventListener("click", () => {
     let screen = document.getElementById("screenText").innerHTML;
     let input = screen.split(" ");
-    let answer = operator(input[1], parseInt(input[0]), parseInt(input[2]));
+    let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
     document.getElementById("screenText").innerHTML = answer;
   })
 })();
