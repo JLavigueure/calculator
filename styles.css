@@ -37,11 +37,10 @@ text-align: center;
 color: white;
 }
 
-/* calculator items */
-
 .content {
     flex: 1;
     background-color: rgb(255, 255, 255);
+    margin: 0px 200px;
     /* contents */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -49,6 +48,29 @@ color: white;
     align-items: center;
     justify-items: center;
 }
+
+
+/* history section */
+#hx {
+    align-self: flex-start;
+    margin-top: 180px;
+}
+
+.history {
+    color: rgb(205, 215, 225);
+    font-size: 24px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.answer {
+    padding-left: 30px;
+    padding-top: .2em;
+    padding-bottom: .8em;
+    color:rgb(101, 123, 143)
+}
+/* calculator items */
 
 .calculator {
     height: 400px;

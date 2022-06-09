@@ -66,6 +66,7 @@ function checkOperator(str, newOperat) {
   })
   document.getElementById("clear").addEventListener("click", function() {
     document.getElementById("screenText").innerHTML = "";
+    clearHx();
     isScreenAnswer = false;
 })
 })();
@@ -152,7 +153,13 @@ function addHx(input, output) {
   document.getElementById("hx").appendChild(newDiv2);
 }
 
-let hx = [];
+function clearHx() {
+  hxContainer = document.getElementById('hx');
+  while(hxContainer.firstChild) {
+    hxContainer.removeChild(hxContainer.firstChild)
+  }
+}
+
 const operates = / \+ | \- | \/ | X /;
 let isScreenAnswer = false; //if screen is showing answer from previous equation
 // turns to false with clear, back or new num
