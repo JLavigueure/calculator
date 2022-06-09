@@ -52,6 +52,10 @@ function checkOperator(str, newOperat) {
     addScreen(9);
   });
   document.getElementById("decimal").addEventListener("click", () => {
+    let screen = document.getElementById("screenText").innerHTML;
+    if(screen.includes('.')) {
+      return;
+    }
     addScreen(`.`);
   });
 })();
@@ -92,7 +96,7 @@ function operator(sign, x, y) {
   else if (sign == 'X') {
     return(multiply(x, y));
   }
-  else {return}
+  else {return("No operator")}
 }
 function add(x, y) {
     return(x + y);
@@ -115,7 +119,10 @@ function divide(x, y) {
     let input = screen.split(" ");
     let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
     console.log(answer)
-    if (isNaN(answer) || answer > Number.MAX_SAFE_INTEGER) {
+    if (answer == "No operator") {
+      return;
+    }
+    else if (isNaN(answer) || answer > Number.MAX_SAFE_INTEGER) {
       document.getElementById("screenText").innerHTML = "Error";
       return;
     }
