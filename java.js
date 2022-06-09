@@ -1,5 +1,9 @@
 function addScreen(int) {
   // adds int text to calculator string
+  let display = document.getElementById("screenText").innerHTML;
+  if (display == "Error") {
+    document.getElementById("screenText").innerHTML = "";
+  }
   document.getElementById("screenText").innerHTML += int
 }
 function checkOperator(str, newOperat) {
