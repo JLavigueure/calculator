@@ -97,7 +97,7 @@ function multiply(x, y) {
   return(x * y);
 } 
 function divide(x, y) {
-  if (y == 0) {return("Error");}
+  if (y == 0) {return;}
   else {return(x / y);}
 }
 
@@ -108,7 +108,8 @@ function divide(x, y) {
     let input = screen.split(" ");
     let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
     console.log(answer)
-    if (answer == undefined) {
+    if (isNaN(answer)) {
+      document.getElementById("screenText").innerHTML = "Error";
       return;
     }
     document.getElementById("screenText").innerHTML = answer;
