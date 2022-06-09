@@ -135,10 +135,29 @@ function divide(x, y) {
     }
     answer = +(answer.toFixed(8));
     document.getElementById("screenText").innerHTML = answer;
+    addHx(screen, answer);
     isScreenAnswer = true;
   })
 })();
 
+function addHx(input, output) {
+  let newDiv1 = document.createElement("div");
+  newDiv1.classList.add("history", "equation");
+  newDiv1.innerHTML = input;
+  document.getElementById("hx").appendChild(newDiv1);
+
+  let newDiv2 = document.createElement("div");
+  newDiv2.classList.add("history", "answer");
+  newDiv2.innerHTML = output;
+  document.getElementById("hx").appendChild(newDiv2);
+}
+
+let hx = [];
 const operates = / \+ | \- | \/ | X /;
 let isScreenAnswer = false; //if screen is showing answer from previous equation
 // turns to false with clear, back or new num
+
+//TO DO
+// add hx to r side of screen
+// add keyboard function
+// use loop in javascript to create divs instead of html code?
