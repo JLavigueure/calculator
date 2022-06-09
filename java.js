@@ -4,7 +4,7 @@ function addScreen(int) {
   if (display == "Error") {
     document.getElementById("screenText").innerHTML = "";
   }
-  else if (display.length > 16) {
+  else if (display.length > 14) {
     return;
   }
   document.getElementById("screenText").innerHTML += int
@@ -58,6 +58,11 @@ function checkOperator(str, newOperat) {
     }
     addScreen(`.`);
   });
+  document.getElementById("back").addEventListener("click", () => {
+    let screen = document.getElementById("screenText").innerHTML;
+    screen = screen.slice(0, -1);
+    document.getElementById("screenText").innerHTML = screen;
+  })
 })();
 (function addOperatorEventListeners() {
   //get screen text in variable at time of click, send to checkOperator func
@@ -119,10 +124,10 @@ function divide(x, y) {
     let input = screen.split(" ");
     let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
     console.log(answer)
-    if (answer == "No operator") {
+    if (answer == "No operator") { //dont return anything if no operator
       return;
     }
-    else if (isNaN(answer) || answer > Number.MAX_SAFE_INTEGER) {
+    else if (isNaN(answer) || answer.length > 14) { //return error if NaN or to large num
       document.getElementById("screenText").innerHTML = "Error";
       return;
     }
