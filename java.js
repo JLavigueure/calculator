@@ -4,6 +4,9 @@ function addScreen(int) {
   if (display == "Error") {
     document.getElementById("screenText").innerHTML = "";
   }
+  else if (display.length > 16) {
+    return;
+  }
   document.getElementById("screenText").innerHTML += int
 }
 function checkOperator(str, newOperat) {
@@ -112,10 +115,11 @@ function divide(x, y) {
     let input = screen.split(" ");
     let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
     console.log(answer)
-    if (isNaN(answer)) {
+    if (isNaN(answer) || answer > Number.MAX_SAFE_INTEGER) {
       document.getElementById("screenText").innerHTML = "Error";
       return;
     }
+    answer = +(answer.toFixed(8));
     document.getElementById("screenText").innerHTML = answer;
   })
 })();
