@@ -4,7 +4,7 @@ function addScreen(int) {
 }
 function checkOperator(str, newOperat) {
   //checks for already entered operator, replaces with or adds new operator
-  const operates = /\+|\-|\/|X/;
+  const operates = / \+ | \- | \/ | X /;
   if (operates.test(str)) {
     let newStr = str.replace(operates, newOperat);
     document.getElementById("screenText").innerHTML = newStr;
@@ -14,6 +14,9 @@ function checkOperator(str, newOperat) {
   }
 }
 (function addNumEventListeners() {
+  document.getElementById("zero").addEventListener("click", () => {
+    addScreen(0);
+  });
   document.getElementById("one").addEventListener("click", () => {
     addScreen(1);
   });
@@ -45,7 +48,6 @@ function checkOperator(str, newOperat) {
     addScreen(`.`);
   });
 })();
-
 (function addOperatorEventListeners() {
   //get screen text in variable at time of click, send to checkOperator func
   document.getElementById("divide").addEventListener("click", () => {
@@ -70,21 +72,20 @@ function checkOperator(str, newOperat) {
 })();
 
 // math functions
-
 function operator(sign, x, y) {
   if (sign == '+') {
-    add(x, y);
+    return(add(x, y));
   }
   else if (sign == '-') {
-    subtract(x, y);
+    return(subtract(x, y));
   }
   else if (sign == '/') {
-    divide(x, y);
+    return(divide(x, y));
   }
-  else if (sign == 'x') {
-    multiply(x, y);
+  else if (sign == 'X') {
+    return(multiply(x, y));
   }
-  else {return("Error");}
+  else {return;}
 }
 function add(x, y) {
     return(x + y);
@@ -93,8 +94,18 @@ function subtract(x, y) {
     return(x - y);
 }
 function multiply(x, y) {
-    return(x * y);
+  return(x * y);
 } 
 function divide(x, y) {
     return(x / y);
 }
+
+// equals button
+(function equal(){
+  document.getElementById("equal").addEventListener("click", () => {
+    let screen = document.getElementById("screenText").innerHTML;
+    let input = screen.split(" ");
+    let answer = operator(input[1], parseInt(input[0]), parseInt(input[2]));
+    document.getElementById("screenText").innerHTML = answer;
+  })
+})();
