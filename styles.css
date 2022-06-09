@@ -40,7 +40,6 @@ color: white;
 .content {
     flex: 1;
     background-color: rgb(255, 255, 255);
-    margin: 0px 200px;
     /* contents */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -52,20 +51,28 @@ color: white;
 /* tip section */
 .tipbox {
     display: flex;
-    align-self: flex-start;
-    margin-top: 300px;
+    align-self: flex-end;
+    margin-bottom: 50px;
 }
 
 .tip {font-size: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
-    color: rgb(101, 123, 143)
+    color: rgb(101, 123, 143);
+    align-self: center
+}
+
+.icon {
+    height: 70px;
+    width: auto;
+    align-self: flex-start;
 }
 
 /* history section */
 #hx {
     align-self: flex-start;
     margin-top: 180px;
+    margin-right: 200px;
 }
 
 .history {
