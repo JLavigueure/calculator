@@ -49,6 +49,18 @@ color: white;
     justify-items: center;
 }
 
+/* tip section */
+.tipbox {
+    display: flex;
+    align-self: flex-start;
+    margin-top: 300px;
+}
+
+.tip {font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    color: rgb(101, 123, 143)
+}
 
 /* history section */
 #hx {

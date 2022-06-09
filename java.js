@@ -121,26 +121,29 @@ function divide(x, y) {
 }
 
 // equals button
-(function equal(){
-  document.getElementById("equal").addEventListener("click", () => {
-    let screen = document.getElementById("screenText").innerHTML;
-    let input = screen.split(" ");
-    let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
-    console.log(answer)
-    if (answer == "No operator") { //dont return anything if no operator
-      return;
-    }
-    else if (isNaN(answer) || answer.length > 14) { //return error if NaN or to large num
-      document.getElementById("screenText").innerHTML = "Error";
-      return;
-    }
-    answer = +(answer.toFixed(8));
-    document.getElementById("screenText").innerHTML = answer;
-    addHx(screen, answer);
-    isScreenAnswer = true;
-  })
+(function equalListener(){
+  document.getElementById("equal").addEventListener("click", () => equal())
 })();
 
+function equal() {
+  let screen = document.getElementById("screenText").innerHTML;
+  let input = screen.split(" ");
+  let answer = operator(input[1], parseFloat(input[0]), parseFloat(input[2]));
+  console.log(answer)
+  if (answer == "No operator") { //dont return anything if no operator
+    return;
+  }
+  else if (isNaN(answer) || answer.length > 14) { //return error if NaN or to large num
+    document.getElementById("screenText").innerHTML = "Error";
+    return;
+  }
+  answer = +(answer.toFixed(8));
+  document.getElementById("screenText").innerHTML = answer;
+  addHx(screen, answer);
+  isScreenAnswer = true;
+}
+
+// history functions
 function addHx(input, output) {
   let newDiv1 = document.createElement("div");
   newDiv1.classList.add("history", "equation");
@@ -152,7 +155,6 @@ function addHx(input, output) {
   newDiv2.innerHTML = output;
   document.getElementById("hx").appendChild(newDiv2);
 }
-
 function clearHx() {
   hxContainer = document.getElementById('hx');
   while(hxContainer.firstChild) {
@@ -160,7 +162,47 @@ function clearHx() {
   }
 }
 
+// keyboard functions
+(function keyboardFunctions() {
+  document.addEventListener('keydown', (e) => {
+    console.log(e.key);
+    screen = document.getElementById("screenText").innerHTML
+    if(e.key == ' ') {return;}
+    if(e.key <= 9 && e.key >= 0) {
+      addScreen(e.key);
+      return;
+    }
+    else if(e.key == '.') {
+      if(screen.includes('.')) {
+        return;
+      }
+      addScreen(`.`);
+      return;
+    }
+    else if(e.key == "Backspace") {
+      screen = screen.slice(0, -1);
+      document.getElementById("screenText").innerHTML = screen;
+      isScreenAnswer = false;
+      return;
+    }
+    else if(e.key == "Enter" || e.key == '=') {
+      equal();
+      return;
+    }
+    else if(operates2.test(e.key)) {
+      if(e.key == 'x' || e.key == '*') {
+        checkOperator(screen, ' X ');
+        return;
+      }
+      else {
+        checkOperator(screen, ` ${e.key} `);
+        return;
+      }
+    }
+  })
+})();
 const operates = / \+ | \- | \/ | X /;
+const operates2 = /\+|\-|\/|x|X|\*/;
 let isScreenAnswer = false; //if screen is showing answer from previous equation
 // turns to false with clear, back or new num
 
