@@ -1,17 +1,17 @@
 function addScreen(int) {
   // adds int text to calculator string
   let display = document.getElementById("screenText").innerHTML;
-  if (display == "Error") {
+  if (display == "Error" || (!operates.test(int) && isScreenAnswer == true)) {
     document.getElementById("screenText").innerHTML = "";
   }
   else if (display.length > 14) {
     return;
   }
+  isScreenAnswer = false;
   document.getElementById("screenText").innerHTML += int
 }
 function checkOperator(str, newOperat) {
   //checks for already entered operator, replaces with or adds new operator
-  const operates = / \+ | \- | \/ | X /;
   if (operates.test(str)) {
     let newStr = str.replace(operates, newOperat);
     document.getElementById("screenText").innerHTML = newStr;
@@ -62,7 +62,12 @@ function checkOperator(str, newOperat) {
     let screen = document.getElementById("screenText").innerHTML;
     screen = screen.slice(0, -1);
     document.getElementById("screenText").innerHTML = screen;
+    isScreenAnswer = false;
   })
+  document.getElementById("clear").addEventListener("click", function() {
+    document.getElementById("screenText").innerHTML = "";
+    isScreenAnswer = false;
+})
 })();
 (function addOperatorEventListeners() {
   //get screen text in variable at time of click, send to checkOperator func
@@ -82,9 +87,6 @@ function checkOperator(str, newOperat) {
     screen = document.getElementById("screenText").innerHTML
     checkOperator(screen, ' - ');
   });
-  document.getElementById("clear").addEventListener("click", function() {
-    document.getElementById("screenText").innerHTML = "";
-})
 })();
 
 // math functions
@@ -133,5 +135,10 @@ function divide(x, y) {
     }
     answer = +(answer.toFixed(8));
     document.getElementById("screenText").innerHTML = answer;
+    isScreenAnswer = true;
   })
 })();
+
+const operates = / \+ | \- | \/ | X /;
+let isScreenAnswer = false; //if screen is showing answer from previous equation
+// turns to false with clear, back or new num
